@@ -1,11 +1,11 @@
 {
     "name": "cloudfreed",
     "type": "module",
-    "version": "2.0.1",
-    "description": "CloudFreed, an automated cloudflare solver.",
+    "version": "2.1.0",
+    "description": "CloudFreed v2.1.0 - Enhanced automated Cloudflare solver with cookie caching, stealth mode, human-like behavior simulation, and retry logic.",
     "repository": {
         "type": "git",
-        "url": "git://github.com/kuuy/CloudFreed---CloudFlare-bypass.git"
+        "url": "git://github.com/kuuy/CloudFreed-CloudFlare-bypass.git"
     },
     "main": "index.js",
     "scripts": {
