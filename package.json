@@ -1,6 +1,5 @@
 {
     "name": "cloudfreed",
-    "type": "module",
     "version": "2.1.0",
     "description": "CloudFreed v2.1.0 - Enhanced automated Cloudflare solver with cookie caching, stealth mode, human-like behavior simulation, and retry logic.",
     "repository": {
@@ -22,6 +21,8 @@
         "puppeteer": "^22.6.2",
         "socks-proxy-agent": "^8.0.2",
         "sqlite3": "^5.1.7",
+        "koa": "^2.15.0",
+        "koa-bodyparser": "^4.4.1",
         "ws": "^8.16.0"
     }
 }

@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CloudFreed</title>
-        <link rel="icon" type="image/png" href="./CloudFreed.png">
+        <title>CloudFlare Bypass</title>
+        <link rel="icon" type="image/png" href="./main.png">
         <style>
             body {
                 background-color: #141414; /* Darker background for better contrast */
@@ -26,11 +26,11 @@
                 padding: 20px;
                 border: 2px solid white;
             }
-            .cloudfreed-container {
+            .main-container {
                 position: relative;
                 display: inline-block;
             }
-            .cloudfreed-logo {
+            .main-logo {
                 width: 128px;
                 height: auto;
                 position: relative;
@@ -71,8 +71,8 @@
     </head>
 
     <body>
-        <div class="cloudfreed-container">
-            <img src="./CloudFreed.png" alt="CloudFreed" class="cloudfreed-logo">
+        <div class="main-container">
+            <img src="./main.png" alt="main logo" class="main-logo">
             <div class="spinner-container">
                 <div class="spinner"></div>
             </div>
@@ -80,14 +80,14 @@
         <div class="content">
             <h1>We're getting things ready...</h1>
             <h1>Please wait...</h1>
-            <p>🚀 CloudFreed is a revolutionary new browser designed to provide you with unparalleled freedom while browsing the web. 🌐</p>
-            <p>With CloudFreed, you can access any website without being restricted by annoying <span class="escape">captchas</span> or <span class="escape">Cloudflare's protection</span>. 🛡️</p>
-            <p>We believe in a free and open internet for everyone, and CloudFreed is our contribution to making that a reality. 🌟</p>
+            <p>🚀 The project is a revolutionary new browser designed to provide you with unparalleled freedom while browsing the web. 🌐</p>
+            <p>With the project, you can access any website without being restricted by annoying <span class="escape">captchas</span> or <span class="escape">Cloudflare's protection</span>. 🛡️</p>
+            <p>We believe in a free and open internet for everyone, and the project is our contribution to making that a reality. 🌟</p>
         </div>
         <br>
             <div id="chromeVersion" class="title"></div>
         </br>
-        <div class="title2">CloudFreed is safe for puppeteer or anything similar.</div>
+        <div class="title2">The project is safe for puppeteer or anything similar.</div>
         <script>
             window.onload = function() {
                 // Function to get Chrome version
@@ -95,10 +95,10 @@
                     var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
                     return raw ? parseInt(raw[2], 10) : false;
                 }
-          
+
                 // Get Chrome version
                 var version = getChromeVersion();
-          
+
                 // Display Chrome version on the page
                 var message = "Relax, you're on ";
 
@@ -109,7 +109,7 @@
                 }
 
                 document.getElementById('chromeVersion').textContent = message;
-            };  
+            };
         </script>
     </body>
 </html>
