@@ -10,14 +10,14 @@ app.use(bodyParser());
 const dataDir = path.join(process.env.HOME, '.puppeteer', `cache_${Date.now()}`);
 
 (async () => {
-  const { default: FindAvailablePort} = await import('./lib/FindAvailablePort.mjs')
-  const { default: CheckDebuggingEndpoint} = await import('./lib/CheckDebuggingEndpoint.mjs')
+  const { default: FindAvailablePort } = await import('./lib/FindAvailablePort.mjs')
+  const { default: CheckDebuggingEndpoint } = await import('./lib/CheckDebuggingEndpoint.mjs')
   const { default: WebSocketManager } = await import("./lib/WebSocketManager.mjs")
 
   const port = await FindAvailablePort(10000, 60000);
 
   let options = {
-    // headless: "new",
+    //headless: "new",
     headless: false,
     executablePath: "/opt/google/chrome/chrome",
     ignoreDefaultArgs: ["--enable-automation"],
@@ -58,9 +58,18 @@ const dataDir = path.join(process.env.HOME, '.puppeteer', `cache_${Date.now()}`)
       try {
         // Use our rewritten Manager
         // It handles all the interception, body capturing, and CF bypass internally now.
-        const result = await WebSocketManager(webSocketDebuggerUrl, targetUrl, loadingHtml, {
-          timeout: 60000
-        });
+        const options = {
+          timeout: 60000,
+          method: ctx.method,
+          contentType: ctx.get('content-type') || 'application/json',
+          postData: ctx.method === 'POST' ? ctx.request.body : null
+        };
+
+        if (process.env.DEBUG && ctx.method === 'POST') {
+          console.log(`[DEBUG] POST Body: ${JSON.stringify(options.postData)}`);
+        }
+
+        const result = await WebSocketManager(webSocketDebuggerUrl, targetUrl, loadingHtml, options);
 
         if (result.success) {
           ctx.status = result.code || 200;
