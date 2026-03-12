@@ -56,13 +56,32 @@ const dataDir = path.join(process.env.HOME, '.puppeteer', `cache_${Date.now()}`)
       }
 
       try {
+        // Parse cookies from request headers if available
+        const cookieHeader = ctx.get('cookie');
+        let customCookies = [];
+        if (cookieHeader) {
+          customCookies = cookieHeader.split(';').map(c => {
+            const [name, ...valueParts] = c.trim().split('=');
+            return {
+              name: name,
+              value: valueParts.join('='),
+              url: targetUrl
+            };
+          }).filter(c => c.name && c.value);
+        }
+
+        if (process.env.DEBUG && customCookies.length > 0) {
+          console.log(`[DEBUG] Custom cookies: ${JSON.stringify(customCookies)}`);
+        }
+
         // Use our rewritten Manager
         // It handles all the interception, body capturing, and CF bypass internally now.
         const options = {
           timeout: 60000,
           method: ctx.method,
           contentType: ctx.get('content-type') || 'application/json',
-          postData: ctx.method === 'POST' ? ctx.request.body : null
+          postData: ctx.method === 'POST' ? ctx.request.body : null,
+          cookies: customCookies
         };
 
         if (process.env.DEBUG && ctx.method === 'POST') {
